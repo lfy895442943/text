@@ -1,0 +1,42 @@
+@charset "utf-8";
+body,p,h1,h2,h3,h4,h5,h6,dl,dd {
+	margin: 0;
+}
+ol,ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+img {
+	vertical-align: top;
+	border: none;
+}
+strong {
+	font-weight: normal;
+}
+em {
+	font-style: normal;
+}
+/*--------清除chrome的表单元素蓝色边框--------*/
+input,textarea,select {
+	outline: none;
+}
+.clearfix:after {
+	content: ".";
+	display: block;
+	visibility: hidden;
+	height: 0;
+	clear: both;
+}
+.clearfix {
+	*zoom: 1;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;	
+}

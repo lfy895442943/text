@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/cssReset.css" />
+		<link rel="stylesheet" href="css/cssStyle.css" />
+		<script type="text/javascript">
+			window.onload = function() {
+				var arrImg = ['img/1.jpg','img/2.png','img/3.jpg','img/4.png','img/5.jpg'];
+				var num = 0;
+				var oBox = document.getElementById("box");
+				var oImg = document.getElementById('img1');
+				var oList = document.getElementById("list");
+				var oLeft = document.getElementById("left");
+				var oRight = document.getElementById("right");
+				var aLi = oList.getElementsByTagName('li');
+				var aImg = oList.getElementsByTagName('img');
+				for (var i = 0; i < arrImg.length; i++) {
+					oList.innerHTML += '<li><img src="'+ arrImg[num] +'"></li>';
+				}
+				aLi[num].style.background = '#ff0';
+				oLeft.onmouseover = function(){
+					oLeft.style.background = 'orange';
+				};
+				oLeft.onmouseout = function(){
+					oLeft.style.background = '';
+				};
+				oRight.onmouseover = function(){
+					oRight.style.background = 'orange';
+				};
+				oRight.onmouseout = function(){
+					oRight.style.background = '';
+				};
+				setInterval(function() {
+					aLi[num].style.backgroundColor = '';
+					num++
+					num%=arrImg.length	
+					oImg.src = arrImg[num];
+					aLi[num].style.backgroundColor = '#ff0'
+				},2000)
+				oLeft.onclick = function() {
+					num--;
+					if ( num == -1 ) {
+						num = arrImg.length-1;
+					}
+					for (var i=0; i<aLi.length; i++) {
+						aLi[i].style = '';
+					}
+					oImg.src = arrImg[num];
+					aLi[num].style.background = '#ff0';
+				};
+				oRight.onclick = function() {
+					num++;
+					if ( num == arrImg.length ) {
+						num =  0;
+					}
+					for (var i=0; i<aLi.length; i++) {
+						aLi[i].style = '';
+					}
+					oImg.src = arrImg[num];
+					aLi[num].style.background = '#ff0';
+				};
+				for (var i=0; i<aLi.length; i++) {
+					aLi[i].index = i;
+					aLi[i].onclick = function() {
+						for (var i=0; i<aLi.length; i++) {
+								aLi[i].style = '';
+						}
+						this.style.backgroundColor = '#ff0';
+						oImg.src = arrImg[this.index];
+						num = this.index;
+					}
+				}
+				for (var i=0; i<aLi.length; i++) {
+					aLi[i].index = i;
+					aLi[i].onmouseover = function() {
+						aImg[this.index].src = arrImg[this.index];	
+						aImg[this.index].style.display = 'block';	
+					}
+					aLi[i].onmouseout = function() {
+						aImg[this.index].src = arrImg[this.index];	
+						aImg[this.index].style.display = 'none';	
+					}
+				}
+			};
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<p>带缩略图的图片轮换</p>
+			<img src="img/1.jpg" width="680" height="456" id="img1"/>
+			<ul id="list" class="clearfix"></ul>
+			<div id="left">&lt;</div>
+			<div id="right">&gt;</div>
+		</div>
+	</body>
+</html>
